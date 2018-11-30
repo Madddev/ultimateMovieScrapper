@@ -1,3 +1,11 @@
 page-movies {
 
 }
+.page-content{
+  background: color($colors, dark);
+}
+ion-navbar{
+  border-bottom-color: color($colors, danger);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}

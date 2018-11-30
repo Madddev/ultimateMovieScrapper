@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {MovieDetailPage} from "../movie-detail/movie-detail";
+import {IMovie} from "../../interface/IMovie";
+import {FavoritesMoviesProvider} from "../../providers/favorites-movies/favorites-movies";
 
-/**
- * Generated class for the FavoritesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -14,12 +12,32 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'favorites.html',
 })
 export class FavoritesPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  favoriteMovies: any ;
+  constructor(public navCtrl: NavController,
+              public favoritesMovieProvider : FavoritesMoviesProvider ,
+              public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad FavoritesPage');
+  ionViewWillEnter() {
+    this.initFavoriteMovies();
+  }
+
+  private initFavoriteMovies() {
+    this.favoritesMovieProvider
+      .getFavoriteMovies()
+      .then(favs => (this.favoriteMovies = favs));
+  }
+
+
+  goToDetail(movie) {
+    this.navCtrl.push(MovieDetailPage, {movie: movie});
+  }
+
+  getFavorites(event){
+
+  }
+  onCancel(event){
+
   }
 
 }

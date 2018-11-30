@@ -1,0 +1,36 @@
+
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title *ngIf="movie">{{movie.Title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button incon-only style="font-size: 1.7em" (click)=toggleFavorite()>
+        <ion-icon [name]="isFavorite ? 'star':'star-outline'"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="movie">
+    <h3 text-center>
+      <ion-card-header>
+        <h2>
+          <ion-badge color="primary">Année : {{movie.Year}}</ion-badge>
+          <ion-badge color="secondary">Durée :{{movie.Runtime}}</ion-badge>
+          <ion-badge color="primary">Score :{{movie.imdbRating}}</ion-badge>
+        </h2>
+      </ion-card-header>
+
+      <rating [imdbRating]="filmrating"></rating>
+    </h3>
+    <img text-center [src]="poster" />
+    <ion-card-content>
+      <ion-badge color="primary">Producteurs : {{movie.Director}}</ion-badge>
+      <ion-badge color="primary">Auteurs : {{movie.Writer}}</ion-badge>
+      <ion-badge color="primary">Genre : {{movie.Genre}}</ion-badge>
+      <ion-badge color="primary">Recommandation d’âge : {{movie.Rated}}</ion-badge>
+      <p color="primary" style="color: white"> Prix : {{movie.Awards}}</p>
+      <p text-center style="color: white">{{movie.Plot}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
