@@ -3,10 +3,12 @@
     (ionInput)="getItems($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
+<ion-grid id="homepage">
+  
+</ion-grid>
 <ion-grid *ngIf="items">
   <ion-row>
     <ion-col col-6 col-md-4 col-lg-2 *ngFor='let movie of items' >
-
       <ion-card class='card'  class="movie-info" (click)='goToDetail(movie)'>
 
         <ion-card-title #popoverText  class="card-title">

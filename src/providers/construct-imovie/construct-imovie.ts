@@ -7,7 +7,6 @@ import {IMovie} from "../../interface/IMovie";
 @Injectable()
 export class ConstructImovieProvider {
   constructor(public http: HttpClient) {
-    console.log('Hello ContructIMovieProvider Provider');
   }
 
   constructIMovie(movie) : IMovie{

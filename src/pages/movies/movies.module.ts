@@ -1,15 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { MoviesPage } from './movies';
-import {RechercheComponent} from "../../components/recherche/recherche";
+import {RechercheComponentModule} from "../../components/recherche/recherche.module";
 
 @NgModule({
   declarations: [
     MoviesPage,
-    RechercheComponent
   ],
   imports: [
     IonicPageModule.forChild(MoviesPage),
+    RechercheComponentModule
+
   ],
 })
 export class MoviesPageModule {}

@@ -13,9 +13,13 @@ import { ConstructImovieProvider } from '../providers/construct-imovie/construct
 import { FavoritesMoviesProvider } from '../providers/favorites-movies/favorites-movies';
 import {IonicStorageModule} from "@ionic/storage";
 import {TabsPageModule} from "../pages/tabs/tabs.module";
-import {MovieDetailPage} from "../pages/movie-detail/movie-detail";
 import {FavoritesPageModule} from "../pages/favorites/favorites.module";
 import {MovieDetailPageModule} from "../pages/movie-detail/movie-detail.module";
+import { SeriseProvider } from '../providers/serise/serise';
+import {SerisesPageModule} from "../pages/serises/serises.module";
+import {SeriseDetailsPageModule} from "../pages/serise-details/serise-details.module";
+import {ListEpisodePageModule} from "../pages/list-episode/list-episode.module";
+import {ListEpisodePage} from "../pages/list-episode/list-episode";
 
 @NgModule({
   declarations: [
@@ -35,7 +39,10 @@ import {MovieDetailPageModule} from "../pages/movie-detail/movie-detail.module";
     FavoritesPageModule,
     IonicStorageModule.forRoot(),
     TabsPageModule,
-    MovieDetailPageModule
+    SerisesPageModule,
+    MovieDetailPageModule,
+    SeriseDetailsPageModule,
+    ListEpisodePageModule
 
   ],
   providers: [
@@ -46,6 +53,7 @@ import {MovieDetailPageModule} from "../pages/movie-detail/movie-detail.module";
     { provide: APP_CONFIG, useValue: APP_DI_CONFIG},
     ConstructImovieProvider,
     FavoritesMoviesProvider,
+    SeriseProvider,
   ]
 })
 export class AppModule {}

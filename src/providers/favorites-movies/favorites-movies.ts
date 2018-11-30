@@ -7,7 +7,6 @@ const MOVIE_KEY = "movie_";
 export class FavoritesMoviesProvider {
 
   constructor(private storage : Storage) {
-    console.log('Hello FavoritesMoviesProvider Provider');
   }
   addFavoriteMovie(movie: IMovie) {
     this.storage.set(this.getMovieKey(movie), JSON.stringify(movie));

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {SeriseDetailsPage} from "../serise-details/serise-details";
 
 /**
  * Generated class for the SerisesPage page.
@@ -14,12 +15,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'serises.html',
 })
 export class SerisesPage {
-
+  typeMovie ="series"; //serie
+  detailPage = SeriseDetailsPage;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SerisesPage');
-  }
+
 
 }
