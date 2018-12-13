@@ -40,7 +40,9 @@ export class FavoritesPage {
   private initFavoriteMovies() {
     this.favoritesMovieProvider
       .getFavoriteMovies()
-      .then(favs => (this.favoriteMovies = favs));
+      .then(favs => {
+        return this.favoriteMovies = favs
+      });
   }
 
 

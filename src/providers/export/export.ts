@@ -3,7 +3,7 @@ import {Injectable} from '@angular/core';
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {File} from '@ionic-native/file';
 import {FavoritesMoviesProvider} from "../favorites-movies/favorites-movies";
-import {Parser as Json2csvParser} from 'json2csv';
+import * as json2csv from 'json2csv';
 
 
 @Injectable()
@@ -20,11 +20,7 @@ export class ExportProvider {
 
   async export(type) {
     let dir = this.file.externalApplicationStorageDirectory;
-
-
     let favorites = await this.favoritesMovieProvider.getFavoriteMovies();
-
-
     let content;
     let fileName;
     switch (type) {
@@ -35,10 +31,8 @@ export class ExportProvider {
       }
       case 'csv' : {
         let fields = ['id', 'imdbID', 'imdbRating', 'imdbVotes', 'language', 'poster', 'title', 'year'];
-        const json2csv = new Json2csvParser();
-        content = json2csv.parse(favorites);
-        console.log(content)
-        fileName = this.fileName + 'toto.csv';
+        content =  json2csv.parse( favorites, {fields} );
+        fileName = this.fileName + '.csv';
         break;
       }
     }

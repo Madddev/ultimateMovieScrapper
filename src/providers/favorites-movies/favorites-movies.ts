@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import { Storage } from "@ionic/storage";
 import {IMovie} from "../../interface/IMovie";
 const MOVIE_KEY = "movie_";
@@ -33,20 +33,19 @@ export class FavoritesMoviesProvider {
     return MOVIE_KEY + movie.id.toString();
   }
 
-  getFavoriteMovies(): Promise<IMovie[]> {
-    return new Promise(resolve => {
-      let results: IMovie[] = [];
-      this.storage
-        .keys()
-        .then(keys =>
+  getFavoriteMovies() {
+    let resultsPromise: Array<any> = [];
+    return this.storage
+      .keys()
+      .then(keys => {
           keys
             .filter(key => key.includes(MOVIE_KEY))
             .forEach(key =>
-              this.storage.get(key).then(data => results.push(JSON.parse(data)))
-            )
-        );
-      return resolve(results);
-    });
+              resultsPromise.push(this.storage.get(key).then(data => JSON.parse(data)))
+            );
+          return Promise.all(resultsPromise);
+        }
+      );
   }
 
 }
