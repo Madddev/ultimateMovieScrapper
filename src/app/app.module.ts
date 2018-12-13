@@ -20,6 +20,14 @@ import {SerisesPageModule} from "../pages/serises/serises.module";
 import {SeriseDetailsPageModule} from "../pages/serise-details/serise-details.module";
 import {ListEpisodePageModule} from "../pages/list-episode/list-episode.module";
 import {ListEpisodePage} from "../pages/list-episode/list-episode";
+import { ExportProvider } from '../providers/export/export';
+import { SocialSharing } from '@ionic-native/social-sharing';
+import { File } from '@ionic-native/file';
+import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
+import {PopoverPage} from "../pages/popover/popover";
+import {PopoverPageModule} from "../pages/popover/popover.module";
+
+
 
 @NgModule({
   declarations: [
@@ -42,7 +50,9 @@ import {ListEpisodePage} from "../pages/list-episode/list-episode";
     SerisesPageModule,
     MovieDetailPageModule,
     SeriseDetailsPageModule,
-    ListEpisodePageModule
+    ListEpisodePageModule,
+    PopoverPageModule
+
 
   ],
   providers: [
@@ -54,6 +64,11 @@ import {ListEpisodePage} from "../pages/list-episode/list-episode";
     ConstructImovieProvider,
     FavoritesMoviesProvider,
     SeriseProvider,
+    ExportProvider,
+    SocialSharing,
+    File,
+    FileTransferObject,
+    FileTransfer
   ]
 })
 export class AppModule {}
