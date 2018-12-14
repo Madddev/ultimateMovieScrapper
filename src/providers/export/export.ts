@@ -76,7 +76,7 @@ export class ExportProvider {
           break;
         }
         case 'csv' : {
-          this.http.get(UrlRemote).subscribe(data => {
+          this.http.get<string>(UrlRemote).subscribe(data => {
               content = this.extractData(data);
               this.addToLocalStorage(content).then((res) => {
                 resolve(res);
