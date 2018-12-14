@@ -16,8 +16,8 @@ export class MovieProvider {
     let url = this.config.apiEndpointDate + 'i='+ id+'&plot=full'+'&type=' + type;
     return this.http.get(this.config.apiEndpointDate + 'i='+ id+'&plot=full'+'&type=' + type);
   }
-  getDataBySearch(titleFilm, type){
-    return this.http.get(this.config.apiEndpointDate + 's='+titleFilm+'&type=' + type).pipe(
+  getDataBySearch(titleFilm, type, page){
+    return this.http.get(this.config.apiEndpointDate + 's='+titleFilm+'&type=' + type + '&page=' + page).pipe(
       map(response =>  response['Search'])
     );
   }
