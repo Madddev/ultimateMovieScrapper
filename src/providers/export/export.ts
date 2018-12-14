@@ -51,4 +51,10 @@ export class ExportProvider {
       });
   }
 
+  async getBlobImage(poster){
+    console.log(poster);
+     const response = await this.http.get(poster, {responseType: 'blob'}).toPromise();
+     return new Blob([response], {type : 'image/jpg'});
+  }
+
 }

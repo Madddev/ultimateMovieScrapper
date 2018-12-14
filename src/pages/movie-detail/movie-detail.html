@@ -24,11 +24,15 @@
       <rating [imdbRating]="filmrating"></rating>
     </h3>
     <img text-center [src]="poster" (error)="posterWhenReject(movie)"/>
+    <button ion-button incon-only (click)=download(poster)>
+     Download Poster  <ion-icon name="download"></ion-icon>
+    </button>
     <ion-card-content>
       <ion-badge color="primary">Producteurs : {{movie.Director}}</ion-badge>
       <ion-badge color="primary">Auteurs : {{movie.Writer}}</ion-badge>
       <ion-badge color="primary">Genre : {{movie.Genre}}</ion-badge>
       <ion-badge color="primary">Recommandation d’âge : {{movie.Rated}}</ion-badge>
+      <ion-badge color="primary">Site : <a [href]="movie.Website">{{movie.Website}}</a></ion-badge>
       <p color="primary" style="color: white"> Prix : {{movie.Awards}}</p>
       <p text-center style="color: white">{{movie.Plot}}</p>
     </ion-card-content>
