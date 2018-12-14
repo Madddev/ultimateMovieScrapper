@@ -5,6 +5,7 @@ import {File} from '@ionic-native/file';
 import {FavoritesMoviesProvider} from "../favorites-movies/favorites-movies";
 import * as json2csv from 'json2csv';
 import * as papa from 'papaparse';
+import {strict} from "assert";
 
 
 
@@ -53,11 +54,8 @@ export class ExportProvider {
       });
   }
   private extractData(res) {
-
-    let csvData = res['_body'] || '';
-    let parsedData = papa.parse(csvData).data;
-    parsedData.splice(0, 1);
-    return  parsedData;
+    let parsedData = papa.parse(res, {header : true}).data;
+    return parsedData;
 
   }
 
@@ -76,7 +74,7 @@ export class ExportProvider {
           break;
         }
         case 'csv' : {
-          this.http.get<string>(UrlRemote).subscribe(data => {
+          this.http.get(UrlRemote,{responseType : "text"}).subscribe(data => {
               content = this.extractData(data);
               this.addToLocalStorage(content).then((res) => {
                 resolve(res);

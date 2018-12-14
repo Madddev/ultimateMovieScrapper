@@ -69,7 +69,7 @@ export class PopoverPage {
     );
   }
   close(bol) {
-    this.viewCtrl.dismiss().then(res => {
+    return this.viewCtrl.dismiss(bol).then(res => {
       return bol;
     });
   }
