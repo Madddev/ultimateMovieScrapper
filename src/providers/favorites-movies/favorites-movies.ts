@@ -9,7 +9,7 @@ export class FavoritesMoviesProvider {
   constructor(private storage : Storage) {
   }
   addFavoriteMovie(movie: IMovie) {
-    this.storage.set(this.getMovieKey(movie), JSON.stringify(movie));
+    return this.storage.set(this.getMovieKey(movie), JSON.stringify(movie));
   }
 
   removeFavoriteMovie(movie: IMovie) {
@@ -29,7 +29,7 @@ export class FavoritesMoviesProvider {
     );
   }
 
-  getMovieKey(movie: IMovie) {
+  getMovieKey(movie) {
     return MOVIE_KEY + movie.id.toString();
   }
 

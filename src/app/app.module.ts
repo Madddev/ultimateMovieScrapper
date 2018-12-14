@@ -25,7 +25,10 @@ import { SocialSharing } from '@ionic-native/social-sharing';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
 import {PopoverPage} from "../pages/popover/popover";
+import { HttpModule } from '@angular/http';
+
 import {PopoverPageModule} from "../pages/popover/popover.module";
+import {HTTP} from "@ionic-native/http";
 
 
 
@@ -51,7 +54,8 @@ import {PopoverPageModule} from "../pages/popover/popover.module";
     MovieDetailPageModule,
     SeriseDetailsPageModule,
     ListEpisodePageModule,
-    PopoverPageModule
+    PopoverPageModule,
+    HttpModule
 
 
   ],
@@ -68,7 +72,8 @@ import {PopoverPageModule} from "../pages/popover/popover.module";
     SocialSharing,
     File,
     FileTransferObject,
-    FileTransfer
+    FileTransfer,
+    HTTP
   ]
 })
 export class AppModule {}

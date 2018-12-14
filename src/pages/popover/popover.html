@@ -1,5 +1,11 @@
 <ion-list>
-  <ion-list-header>Export favorites</ion-list-header>
+  <ion-list-header color="primary">Export favorites</ion-list-header>
   <button ion-item (click)="exportFavorites('json')">Json</button>
   <button ion-item (click)="exportFavorites('csv')">Csv</button>
 </ion-list>
+<ion-list>
+  <ion-list-header color="primary">Import favorites</ion-list-header>
+  <button ion-item (click)="presentPrompt('json')">Json</button>
+  <button ion-item (click)="presentPrompt('csv')">Csv</button>
+</ion-list>
+

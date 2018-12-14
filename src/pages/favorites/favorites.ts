@@ -38,10 +38,10 @@ export class FavoritesPage {
   }
 
   private initFavoriteMovies() {
-    this.favoritesMovieProvider
+    return this.favoritesMovieProvider
       .getFavoriteMovies()
       .then(favs => {
-        return this.favoriteMovies = favs
+        this.favoriteMovies = favs
       });
   }
 
@@ -68,6 +68,11 @@ export class FavoritesPage {
   }
   presentPopover(myEvent) {
     let popover = this.popoverCtrl.create(PopoverPage);
+    popover.onDidDismiss((res) => {
+      if(res){
+        this.initFavoriteMovies().then(() => console.log('ok'));
+      }
+    })
     popover.present({
       ev: myEvent
     });
