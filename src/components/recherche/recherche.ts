@@ -16,8 +16,11 @@ export class RechercheComponent {
   totalPage = 100;
   title : any;
   hasResult : boolean = false;
+  public toggled: boolean = false;
+
 
   constructor( public movieProvider : MovieProvider, public navCtrl: NavController) {
+    this.toggled = false;
   }
 
   getItems(event) {
@@ -50,7 +53,7 @@ export class RechercheComponent {
     }, 1000);
   }
   onCancel(event){
-    this.dropData();
+    this.toggle();
   }
 
   dropData(){
@@ -64,6 +67,10 @@ export class RechercheComponent {
     this.navCtrl.push(this.detailPage, {
       movie: movie
     });
+  }
+
+  public toggle(): void {
+    this.toggled = !this.toggled;
   }
 
 }

@@ -1,5 +1,9 @@
 <!-- Generated template for the RechercheComponent component -->
+
+    <ion-icon color="primary" *ngIf="!toggled" (click)="toggle()" name="search"></ion-icon>
+
   <ion-searchbar
+    *ngIf="toggled"
     (ionInput)="getItems($event)"
     (ionCancel)="onCancel($event)">
   </ion-searchbar>
