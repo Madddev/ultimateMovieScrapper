@@ -74,7 +74,7 @@ export class MovieDetailPage {
 
     if (this.platform.is('core')) {
       img = await this.exportService.getBlobImage(poster);
-      this.downloadFromBrowser(img, this.filename);
+      this.exportService.downloadBrowser(img, this.filename);
     }else {
      //return this.socialSharing.shareWithOptions({message : 'message',files : [poster]});
       return this.socialSharing.shareWithOptions({
@@ -84,16 +84,6 @@ export class MovieDetailPage {
         url : poster});
 
     }
-  }
-
-   downloadFromBrowser(blod, filename){
-    let objectOjectURL = URL.createObjectURL(blod);
-    let link = document.createElement('a');
-    link.setAttribute('href',objectOjectURL);
-    link.setAttribute('download',filename);
-    link.click();
-    link.remove();
-    URL.revokeObjectURL(objectOjectURL);
   }
 
   presentToast(message) {

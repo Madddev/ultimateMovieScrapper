@@ -32,9 +32,10 @@
       <ion-badge color="primary">Auteurs : {{movie.Writer}}</ion-badge>
       <ion-badge color="primary">Genre : {{movie.Genre}}</ion-badge>
       <ion-badge color="primary">Recommandation d’âge : {{movie.Rated}}</ion-badge>
-      <ion-badge color="primary">Site : <a [href]="movie.Website">{{movie.Website}}</a></ion-badge>
       <p color="primary" style="color: white"> Prix : {{movie.Awards}}</p>
       <p text-center style="color: white">{{movie.Plot}}</p>
+      <p>Site : <a [href]="movie.Website">{{movie.Website}}</a></p>
+
     </ion-card-content>
   </ion-card>
 </ion-content>

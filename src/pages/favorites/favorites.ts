@@ -72,7 +72,7 @@ export class FavoritesPage {
       if(res){
         this.initFavoriteMovies().then(() => console.log('ok'));
       }
-    })
+    });
     popover.present({
       ev: myEvent
     });

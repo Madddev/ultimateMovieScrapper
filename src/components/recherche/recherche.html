@@ -11,9 +11,7 @@
         <ion-card-title #popoverText  class="card-title">
           {{movie.Title}}
         </ion-card-title>
-
-        <img  [src]="movie.Poster"/>
-
+        <img  [src]="movie.Poster !== 'N/A' ? movie.Poster : 'assets/imgs/no-poster.jpg'"/>
         <div class="card-subtitle">
           <ion-row>
             <ion-col>

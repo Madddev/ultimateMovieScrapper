@@ -5,7 +5,8 @@ import {File} from '@ionic-native/file';
 import {FavoritesMoviesProvider} from "../favorites-movies/favorites-movies";
 import * as json2csv from 'json2csv';
 import * as papa from 'papaparse';
-import {strict} from "assert";
+import { Platform } from 'ionic-angular';
+
 
 
 
@@ -13,10 +14,9 @@ import {strict} from "assert";
 export class ExportProvider {
   fileName = "export_favorites";
 
-  // please set your fileName;
-
   constructor(public http: HttpClient, public file: File, private socialSharing: SocialSharing,
               public favoritesMovieProvider: FavoritesMoviesProvider,
+              public platform : Platform
   ) {
 
   }
@@ -26,33 +26,53 @@ export class ExportProvider {
     let favorites = await this.favoritesMovieProvider.getFavoriteMovies();
     let content;
     let fileName;
-    switch (type) {
-      case 'json' : {
-        content = JSON.stringify(favorites);
-        fileName = this.fileName + '.json';
-        break;
+    if (this.platform.is('core')) {
+      switch (type) {
+        case 'json' : {
+          content = JSON.stringify(favorites);
+          fileName = this.fileName + '.json';
+          this.downloadBrowser(content,fileName);
+          break;
+        }
+        case 'csv' : {
+          let fields = ['id', 'imdbID', 'imdbRating', 'imdbVotes', 'language', 'poster', 'title', 'year'];
+          content =  json2csv.parse( favorites, {fields} );
+          fileName = this.fileName + '.csv';
+          this.downloadBrowser(content,fileName);
+          break;
+        }
       }
-      case 'csv' : {
-        let fields = ['id', 'imdbID', 'imdbRating', 'imdbVotes', 'language', 'poster', 'title', 'year'];
-        content =  json2csv.parse( favorites, {fields} );
-        fileName = this.fileName + '.csv';
-        break;
+    }else {
+      switch (type) {
+        case 'json' : {
+          content = JSON.stringify(favorites);
+          fileName = this.fileName + '.json';
+          break;
+        }
+        case 'csv' : {
+          let fields = ['id', 'imdbID', 'imdbRating', 'imdbVotes', 'language', 'poster', 'title', 'year'];
+          content =  json2csv.parse( favorites, {fields} );
+          fileName = this.fileName + '.csv';
+          break;
+        }
       }
+
+      return this.file
+        .writeFile(dir,
+          fileName,
+          content,
+          {replace: true})
+        .then(value => {
+          let options =  {
+            message : 'Export Favorites',
+            files : [value.nativeURL]
+          };
+          return this.socialSharing.shareWithOptions(options);
+        });
     }
 
-    return this.file
-      .writeFile(dir,
-        fileName,
-        content,
-        {replace: true})
-      .then(value => {
-        let options =  {
-          message : 'Mamadou',
-          files : [value.nativeURL]
-        };
-        return this.socialSharing.shareWithOptions(options);
-      });
   }
+
   private extractData(res) {
     let parsedData = papa.parse(res, {header : true}).data;
     return parsedData;
@@ -99,6 +119,16 @@ export class ExportProvider {
   async getBlobImage(poster){
      const response = await this.http.get(poster, {responseType: 'blob'}).toPromise();
      return new Blob([response], {type : 'image/jpg'});
+  }
+  downloadBrowser(content,filename) {
+    var blob = new Blob([content]);
+    let objectOjectURL = URL.createObjectURL(blob);
+    let link = document.createElement('a');
+    link.setAttribute('href',objectOjectURL);
+    link.setAttribute('download',filename);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(objectOjectURL);
   }
 
 }
