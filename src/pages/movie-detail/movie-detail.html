@@ -35,6 +35,10 @@
       <p color="primary" style="color: white"> Prix : {{movie.Awards}}</p>
       <p text-center style="color: white">{{movie.Plot}}</p>
       <p>Site : <a [href]="movie.Website">{{movie.Website}}</a></p>
+      <iframe *ngIf="urlTrailer" width="560" height="315" [src]="urlTrailer"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen></iframe>
 
     </ion-card-content>
   </ion-card>

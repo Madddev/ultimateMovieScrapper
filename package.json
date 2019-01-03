@@ -29,6 +29,8 @@
     "@ionic-native/status-bar": "~4.17.0",
     "@ionic/storage": "2.2.0",
     "@types/papaparse": "^4.5.5",
+    "@ultimate/ngxerrors": "^1.4.0",
+    "angularfire2": "^5.1.1",
     "cordova-android": "7.1.4",
     "cordova-plugin-advanced-http": "2.0.2",
     "cordova-plugin-device": "^2.0.2",
@@ -42,12 +44,14 @@
     "cordova-plugin-x-socialsharing": "5.4.3",
     "cordova-sqlite-storage": "2.5.2",
     "es6-promise-plugin": "4.2.2",
+    "firebase": "^5.7.2",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "json2csv": "^4.3.1",
     "papaparse": "^4.6.2",
     "rxjs": "5.5.11",
     "sw-toolbox": "3.6.0",
+    "youtube-api-v3-search": "^1.2.1",
     "zone.js": "0.8.26"
   },
   "devDependencies": {

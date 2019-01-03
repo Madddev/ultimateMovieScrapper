@@ -6,6 +6,8 @@ import {ConstructImovieProvider} from "../../providers/construct-imovie/construc
 import { FileTransfer, FileTransferObject  } from '@ionic-native/file-transfer';
 import { File } from '@ionic-native/file';
 import { ToastController } from 'ionic-angular';
+import { DomSanitizer } from '@angular/platform-browser';
+
 
 import {SocialSharing} from "@ionic-native/social-sharing";
 
@@ -27,7 +29,8 @@ export class MovieDetailPage {
   filmrating: any;
   isFavorite: boolean = false;
   fileTransfer: FileTransferObject = this.transfer.create();
-   filename = 'poster_film';
+  filename = 'poster_film';
+  urlTrailer = null;
 
 
 
@@ -42,7 +45,8 @@ export class MovieDetailPage {
               private exportService : ExportProvider,
               private platform : Platform,
               private socialSharing : SocialSharing,
-              private toastCtrl: ToastController
+              private toastCtrl: ToastController,
+              private sanitized: DomSanitizer
   ) {
 
 
@@ -53,6 +57,10 @@ export class MovieDetailPage {
       this.poster = this.movieProvider.getPosterById(lefilm.imdbID);
       this.movie = lefilm;
       this.filmrating = lefilm.imdbRating;
+      this.movieProvider.getTrailerByIdFilm(lefilm.Title).then((res) =>{
+        if (res !== undefined){
+          this.urlTrailer = this.sanitized.bypassSecurityTrustResourceUrl('https://www.youtube.com/embed/'+res);
+        }});
       let imovie = this.constructObjetIMovie.constructIMovie(this.movie);
       this.favoritesMovieProvider.isFavortieMovie(imovie).then(value => (this.isFavorite = value));
     });

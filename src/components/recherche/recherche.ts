@@ -53,7 +53,7 @@ export class RechercheComponent {
     }, 1000);
   }
   onCancel(event){
-    this.toggle();
+    return this.toggle();
   }
 
   dropData(){
